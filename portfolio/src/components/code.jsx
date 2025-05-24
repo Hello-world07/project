@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula, solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { FaCopy, FaCheck, FaPlay, FaCode, FaEye } from 'react-icons/fa';
+import Particles from '@tsparticles/react'; // Updated import
+import { loadSlim } from '@tsparticles/slim'; // Updated import
 
-// A fully responsive, modern Code section with fixed layout, live preview, and theme switching
+// A fully responsive, modern Code section with dynamic background, particles, and glow effects
 const Code = () => {
   const [activeTab, setActiveTab] = useState('rps');
   const [copied, setCopied] = useState(false);
@@ -209,13 +211,94 @@ Is 'racecar' a palindrome? True
     solarizedlight: solarizedlight,
   };
 
+  // Particle initialization for tsparticles
+  const particlesInit = useCallback(async (engine) => {
+    await loadSlim(engine);
+  }, []);
+
+  // Particle options for a subtle, modern effect
+  const particlesOptions = {
+    background: {
+      color: {
+        value: "transparent", // Ensure the particle background is transparent
+      },
+    },
+    fpsLimit: 60,
+    interactivity: {
+      events: {
+        onClick: {
+          enable: true,
+          mode: "push",
+        },
+        onHover: {
+          enable: true,
+          mode: "repulse",
+        },
+      },
+      modes: {
+        push: {
+          quantity: 4,
+        },
+        repulse: {
+          distance: 100,
+          duration: 0.4,
+        },
+      },
+    },
+    particles: {
+      color: {
+        value: ["#6366f1", "#a855f7", "#ec4899"], // Indigo, purple, pink to match gradient
+      },
+      links: {
+        enable: false,
+      },
+      move: {
+        direction: "none",
+        enable: true,
+        outModes: {
+          default: "out",
+        },
+        random: true,
+        speed: 1,
+        straight: false,
+      },
+      number: {
+        density: {
+          enable: true,
+          area: 800,
+        },
+        value: 50,
+      },
+      opacity: {
+        value: 0.5,
+        random: true,
+      },
+      shape: {
+        type: "circle",
+      },
+      size: {
+        value: { min: 1, max: 3 },
+        random: true,
+      },
+    },
+    detectRetina: true,
+  };
+
   return (
     <section className="min-h-screen bg-gray-100 dark:bg-custom-dark flex items-center justify-center py-8 sm:py-12 transition-colors duration-300 relative overflow-hidden">
-      {/* Background Gradient Animation */}
-      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 animate-gradient-x"></div>
+      {/* Enhanced Gradient Background with Multi-Directional Animation */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 animate-gradient-xy opacity-80"></div>
+      <div className="absolute inset-0 bg-gradient-to-tl from-blue-500/10 via-teal-500/10 to-purple-500/10 animate-gradient-xy-slow opacity-50"></div>
+
+      {/* Particle Layer */}
+      <Particles
+        id="tsparticles"
+        className="absolute inset-0 z-0"
+        init={particlesInit}
+        options={particlesOptions}
+      />
 
       <div className="w-full max-w-full sm:max-w-2xl lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Add padding-top to account for fixed navbar height */}
         <div className="pt-20">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 lg:mb-8 text-center animate-fade-in">
             My Code
@@ -238,8 +321,8 @@ Is 'racecar' a palindrome? True
             ))}
           </div>
 
-          {/* Code Card */}
-          <div className="bg-white dark:bg-custom-dark-secondary p-4 sm:p-5 lg:p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 animate-fade-in transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/20">
+          {/* Code Card with Glow Effect */}
+          <div className="bg-white dark:bg-custom-dark-secondary p-4 sm:p-5 lg:p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 animate-fade-in transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/30 glow-effect">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2">
               <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900 dark:text-white text-center sm:text-left">
                 {codeSnippets[activeTab].title}
