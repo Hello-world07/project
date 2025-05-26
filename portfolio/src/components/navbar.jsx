@@ -87,7 +87,7 @@ const Navbar = () => {
               className="relative text-sm font-medium text-indigo-700 dark:text-indigo-400 px-3 py-1.5 rounded-full transition-all duration-300 group overflow-hidden"
             >
               <span className="absolute inset-0 bg-indigo-100 dark:bg-indigo-800 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
-              <span className="relative z-10">Contact Us</span>
+              <span className="relative z-10">Contact Me</span>
             </Link>
 
             {/* Theme Toggle Dropdown (Desktop) */}

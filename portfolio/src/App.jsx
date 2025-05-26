@@ -7,6 +7,7 @@ import Projects from './components/project';
 import Skills from './components/skills';
 import Code from './components/code';
 import ContactUs from './components/contactus';
+import Footer from './components/footer';
 
 // Main App component with theme provider for dark mode support
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
               <Route path="/contact" element={<ContactUs />} />
             </Routes>
           </main>
+          <Footer />
         </div>
       </Router>
     </ThemeProvider>
