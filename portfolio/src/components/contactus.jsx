@@ -109,7 +109,7 @@ const ContactUs = () => {
       <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <TypingEffect text="Get in Touch" id="contact-heading" />
         <p className="text-base sm:text-lg lg:text-xl text-center text-gray-600 dark:text-gray-200 mb-6 sm:mb-8 font-montserrat">
-          Let's connect! Drop me a message to discuss your projects or opportunities.
+        I’m always open to new opportunities, collaborations, or just a quick tech chat. Feel free to reach out!
         </p>
 
         {/* Contact Form */}

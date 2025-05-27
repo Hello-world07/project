@@ -15,7 +15,7 @@ const About = () => {
           />
           {/* Name below profile image */}
           <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-4 font-poppins">
-          ⫷ 𝙿𝚛𝚊𝚗𝚒𝚝𝚑 ⫸ ⫷ 𝙺𝚘𝚗𝚍𝚊 ⫸
+          pranith konda
           </h2>
           {/* Centered Social Media Icons */}
           <div className="flex justify-center gap-3 sm:gap-4">
@@ -44,7 +44,7 @@ const About = () => {
               <FaTwitter size={24} className="sm:size-30" />
             </a>
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:your.pranithkondakp@gmal.com"
               className="text-gray-600 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors duration-300"
             >
               <FaEnvelope size={24} className="sm:size-30" />

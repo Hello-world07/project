@@ -9,7 +9,7 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Custom Glow Effect */
+/* Custom Glow Effect for Skill Cards and Resume Button */
 .glow-effect {
   box-shadow: 0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(99, 102, 241, 0.2);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -40,7 +40,17 @@ body {
 .animate-smooth-wave {
   display: inline-block;
   animation: smooth-wave 1.5s ease-in-out infinite;
-  font-size: 1.5rem; /* Default emoji size */
+  font-size: 1.5rem;
+}
+
+/* Icon Bounce Animation for Resume Button */
+@keyframes icon-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-icon-bounce {
+  animation: icon-bounce 0.4s ease-in-out;
 }
 
 /* Adjust emoji size for smaller screens */
@@ -140,10 +150,15 @@ body {
   .animate-gradient-xy-slow,
   .animate-smooth-wave,
   .animate-gradient-text,
-  .animate-heading {
+  .animate-heading,
+  .animate-icon-bounce {
     animation: none;
   }
   .heading-underline::after {
+    transform: none;
+  }
+  .glow-effect:hover {
+    box-shadow: none;
     transform: none;
   }
 }

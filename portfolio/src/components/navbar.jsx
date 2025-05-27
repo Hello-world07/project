@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes, FaSun, FaMoon, FaDesktop } from 'react-icons/fa';
+import { FaBars, FaTimes, FaSun, FaMoon, FaFileDownload } from 'react-icons/fa';
 import { ThemeContext } from '../ThemeContext';
 
-// Responsive navbar with a working theme toggle
+// Responsive navbar with a working theme toggle and animated Download Resume button
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const { theme, changeTheme } = useContext(ThemeContext);
 
   // Handle scroll effect for navbar shadow and blur
@@ -21,17 +20,11 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    if (isThemeMenuOpen) setIsThemeMenuOpen(false); // Close theme menu if open
   };
 
-  const toggleThemeMenu = () => {
-    setIsThemeMenuOpen(!isThemeMenuOpen);
-  };
-
-  const handleThemeChange = (newTheme) => {
-    console.log('Theme toggle clicked, new theme:', newTheme); // Debug log
-    changeTheme(newTheme);
-    setIsThemeMenuOpen(false);
+  const handleThemeChange = () => {
+    console.log('Theme toggle clicked, new theme:', theme === 'dark' ? 'light' : 'dark'); // Debug log
+    changeTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
@@ -48,11 +41,11 @@ const Navbar = () => {
               to="/"
               className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300"
             >
-              Pranith_Konda
+              𝓟𝓻𝓪𝓷𝓲𝓽𝓱_𝓚𝓸𝓷𝓭𝓪
             </Link>
           </div>
 
-          {/* Right: Nav Links and Theme Toggle (Desktop) */}
+          {/* Right: Nav Links, Theme Toggle, and Download Resume (Desktop) */}
           <div className="hidden md:flex space-x-6 items-center">
             <Link
               to="/about"
@@ -89,39 +82,27 @@ const Navbar = () => {
               <span className="absolute inset-0 bg-indigo-100 dark:bg-indigo-800 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
               <span className="relative z-10">Contact Me</span>
             </Link>
-
-            {/* Theme Toggle Dropdown (Desktop) */}
-            <div className="relative">
-              <button
-                onClick={toggleThemeMenu}
-                className="text-gray-600 dark:text-gray-200 hover:text-indigo-700 dark:hover:text-indigo-400 focus:outline-none transition-colors duration-300 p-1 rounded"
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? <FaMoon size={20} /> : <FaSun size={20} />}
-              </button>
-              {isThemeMenuOpen && (
-                <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-custom-dark-secondary rounded-md shadow-lg py-2 z-50">
-                  <button
-                    onClick={() => handleThemeChange('light')}
-                    className="flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-custom-dark transition-colors duration-200"
-                  >
-                    <FaSun className="mr-2" /> Light
-                  </button>
-                  <button
-                    onClick={() => handleThemeChange('dark')}
-                    className="flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-custom-dark transition-colors duration-200"
-                  >
-                    <FaMoon className="mr-2" /> Dark
-                  </button>
-                  <button
-                    onClick={() => handleThemeChange('system')}
-                    className="flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-custom-dark transition-colors duration-200"
-                  >
-                    <FaDesktop className="mr-2" /> System
-                  </button>
-                </div>
-              )}
-            </div>
+            <a
+              href="/pranith.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="relative text-sm font-medium text-indigo-700 dark:text-indigo-400 px-3 py-1.5 rounded-full transition-all duration-300 group overflow-hidden hover:scale-105 active:animate-pulse glow-effect"
+            >
+              <span className="absolute inset-0 bg-indigo-100 dark:bg-indigo-800 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
+              <span className="relative z-10 flex items-center space-x-1">
+                <span>Resume</span>
+                <FaFileDownload className="group-hover:animate-icon-bounce text-base" />
+              </span>
+            </a>
+            {/* Theme Toggle Button (Desktop) */}
+            <button
+              onClick={handleThemeChange}
+              className="text-gray-600 dark:text-gray-200 hover:text-indigo-700 dark:hover:text-indigo-400 focus:outline-none transition-colors duration-300 p-1 rounded"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}
+            </button>
           </div>
 
           {/* Hamburger Menu (Mobile) */}
@@ -182,29 +163,40 @@ const Navbar = () => {
             onClick={toggleMenu}
           >
             <span className="absolute inset-0 bg-indigo-100 dark:bg-indigo-800 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
-            <span className="relative z-10">Contact Us</span>
+            <span className="relative z-10">Contact Me</span>
           </Link>
+          <a
+            href="/pranith.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+            className="relative text-sm font-medium text-indigo-700 dark:text-indigo-400 px-3 py-1.5 rounded-full transition-all duration-300 group overflow-hidden text-center hover:scale-105 active:animate-pulse glow-effect"
+            onClick={toggleMenu}
+          >
+            <span className="absolute inset-0 bg-indigo-100 dark:bg-indigo-800 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
+            <span className="relative z-10 flex items-center justify-center space-x-1">
+              <span>Resume</span>
+              <FaFileDownload className="group-hover:animate-icon-bounce text-base" />
+            </span>
+          </a>
           {/* Theme Toggle in Mobile Menu */}
-          <div className="flex flex-col space-y-2">
-            <button
-              onClick={() => handleThemeChange('light')}
-              className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-custom-dark rounded transition-colors duration-200"
-            >
-              <FaSun className="mr-2" /> Light
-            </button>
-            <button
-              onClick={() => handleThemeChange('dark')}
-              className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-custom-dark rounded transition-colors duration-200"
-            >
-              <FaMoon className="mr-2" /> Dark
-            </button>
-            <button
-              onClick={() => handleThemeChange('system')}
-              className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-custom-dark rounded transition-colors duration-200"
-            >
-              <FaDesktop className="mr-2" /> System
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              handleThemeChange();
+              toggleMenu();
+            }}
+            className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-custom-dark rounded transition-colors duration-200"
+          >
+            {theme === 'dark' ? (
+              <>
+                <FaSun className="mr-2" /> Light
+              </>
+            ) : (
+              <>
+                <FaMoon className="mr-2" /> Dark
+              </>
+            )}
+          </button>
         </div>
       </div>
     </nav>
