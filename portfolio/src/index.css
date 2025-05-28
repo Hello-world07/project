@@ -19,13 +19,36 @@ body {
   box-shadow: 0 0 30px rgba(99, 102, 241, 0.5), 0 0 60px rgba(99, 102, 241, 0.3);
 }
 
-/* Glow Text Effect for Highlighted Words */
-.glow-text {
-  transition: text-shadow 0.3s ease;
+/* Modern Box Layout for Highlighted Words */
+.box-highlight {
+  display: inline-block;
+  padding: 0.05rem 0.2rem;
+  margin: 0 0.1rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.03);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.glow-text:hover {
-  text-shadow: 0 0 10px rgba(99, 102, 241, 0.7), 0 0 20px rgba(99, 102, 241, 0.5);
+.box-highlight:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.dark .box-highlight {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.dark .box-highlight:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Wrapper for highlighted phrases to add vertical spacing */
+.highlight-wrapper {
+  display: inline-block;
+  margin-bottom: 0.25rem; /* Adds vertical spacing between lines */
 }
 
 /* Smoother Waving Emoji Animation */
